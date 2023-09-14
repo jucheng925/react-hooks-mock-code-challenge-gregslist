@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Header from "./Header";
 import ListingsContainer from "./ListingsContainer";
+import ListingForm from "./ListingForm";
 
 function App() {
   const [listings, setListings] = useState([])
@@ -28,9 +29,15 @@ function App() {
     setDisplayListings(listingsToDisplay)
   }
 
+  function addItem(newItem) {
+    setListings([...listings, newItem])
+    setDisplayListings([...displayListings, newItem])
+  }
+
   return (
     <div className="app">
       <Header onSearch={filterSearch}/>
+      <ListingForm onAddItem={addItem}/>
       <ListingsContainer listings={displayListings} onDelete={deleteListing}/>
     </div>
   );
